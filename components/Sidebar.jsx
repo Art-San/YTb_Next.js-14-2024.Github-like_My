@@ -18,8 +18,17 @@ const Sidebar = () => {
     >
       <nav className="h-full flex flex-col gap-3">
         <Link href="/" className="flex justify-center w-auto h-auto">
-          <Image src="/github.svg" alt="Github Logo" width={25} height={25} />
+          <Image
+            src="/github.svg"
+            alt="Github Logo"
+            width="0"
+            height="0"
+            className=" w-6 h-6"
+          />
         </Link>
+        {/* <Link href="/" className="flex justify-center w-auto h-auto">
+          <Image src="/github.svg" alt="Github Logo" width="25" height="25" />
+        </Link> */}
 
         <Link
           href="/"

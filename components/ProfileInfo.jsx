@@ -38,6 +38,7 @@ const ProfileInfo = () => {
               src={userProfile?.avatar_url}
               className="rounded-md mb-2"
               alt=""
+              priority={false}
             />
           </a>
           {/* View on Github */}
