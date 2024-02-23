@@ -2,16 +2,14 @@ import { handleLogOut } from '@/lib/action'
 import Image from 'next/image'
 import { MdLogout } from 'react-icons/md'
 
-const Logout = () => {
+const Logout = ({ image }) => {
   return (
     <>
       <Image
         alt=""
         width={25}
         height={25}
-        src={
-          'https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745'
-        }
+        src={image}
         className="w-10 h-10 rounded-full border border-gray-800"
       />
 
