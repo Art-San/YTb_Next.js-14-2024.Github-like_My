@@ -6,10 +6,11 @@ import { MdEditDocument } from 'react-icons/md'
 import Logout from './Logout'
 import Link from 'next/link'
 import Image from 'next/image'
-// import { useAuthContext } from '../context/AuthContext'
+import { auth } from '@/lib/auth'
 
-const Sidebar = () => {
-  const authUser = true
+const Sidebar = async () => {
+  const session = await auth()
+  console.log('session Sidebar', session)
 
   return (
     <aside
@@ -26,9 +27,6 @@ const Sidebar = () => {
             className=" w-6 h-6"
           />
         </Link>
-        {/* <Link href="/" className="flex justify-center w-auto h-auto">
-          <Image src="/github.svg" alt="Github Logo" width="25" height="25" />
-        </Link> */}
 
         <Link
           href="/"
@@ -38,7 +36,7 @@ const Sidebar = () => {
           <IoHomeSharp size={20} />
         </Link>
 
-        {authUser && (
+        {session && (
           <Link
             href="/likes"
             className="p-1.5 flex justify-center transition-colors duration-200 rounded-lg hover:bg-gray-800"
@@ -47,7 +45,7 @@ const Sidebar = () => {
           </Link>
         )}
 
-        {authUser && (
+        {session && (
           <Link
             href="/explore"
             className="p-1.5 flex justify-center transition-colors duration-200 rounded-lg hover:bg-gray-800"
@@ -56,7 +54,7 @@ const Sidebar = () => {
           </Link>
         )}
 
-        {!authUser && (
+        {!session && (
           <Link
             href="/login"
             className="p-1.5 focus:outline-nones transition-colors duration-200 rounded-lg hover:bg-gray-800"
@@ -65,7 +63,7 @@ const Sidebar = () => {
           </Link>
         )}
 
-        {!authUser && (
+        {!session && (
           <Link
             href="/signup"
             className="p-1.5 focus:outline-nones transition-colors duration-200 rounded-lg hover:bg-gray-800"
@@ -74,7 +72,7 @@ const Sidebar = () => {
           </Link>
         )}
 
-        {authUser && (
+        {session && (
           <div className="flex flex-col gap-2 mt-auto">
             <Logout />
           </div>

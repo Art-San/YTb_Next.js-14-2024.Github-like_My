@@ -5,7 +5,7 @@ import SortRepos from '@/components/SortRepos'
 import Spinner from '@/components/Spinner'
 
 // import Spinner from '../components/Spinner'
-const HomePage = () => {
+const HomePage = async () => {
   return (
     <div className="m-4">
       <Search />

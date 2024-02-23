@@ -1,3 +1,4 @@
+import { handleGithubLogin } from '@/lib/action'
 import Link from 'next/link'
 import { FaGithub, FaUnlockAlt } from 'react-icons/fa'
 
@@ -9,15 +10,16 @@ const SignUpPage = () => {
           <h1 className="text-xl font-bold md:text-2xl text-center">
             Create Account
           </h1>
-          <button
-            type="button"
-            className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4
+          <form action={handleGithubLogin}>
+            <button
+              className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4
 						focus:ring-[#24292F]/50 font-medium rounded-lg flex gap-2 p-2 items-center w-full 
 						text-center justify-center"
-          >
-            <FaGithub className="w-5 h-5" />
-            Sign up with Github
-          </button>
+            >
+              <FaGithub className="w-5 h-5" />
+              Sign up with Github
+            </button>
+          </form>
           <p className="text-gray-300">
             By signing up, you will unlock all the features of the app.
             <span>
