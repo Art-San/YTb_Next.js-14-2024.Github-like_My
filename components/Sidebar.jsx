@@ -10,7 +10,7 @@ import { auth } from '@/lib/auth'
 
 const Sidebar = async () => {
   const session = await auth()
-  console.log('session Sidebar', session)
+  // console.log('session Sidebar', JSON.parse(JSON.stringify(session)))
 
   return (
     <aside
