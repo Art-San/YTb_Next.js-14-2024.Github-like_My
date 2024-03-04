@@ -10,9 +10,8 @@ import { auth } from '@/lib/auth'
 
 const Sidebar = async () => {
   const session = await auth()
-  // console.log('session Sidebar', JSON.parse(JSON.stringify(session)))
-  const { user } = session
-  console.log('session Sidebar user', user)
+
+  console.log('session', session?.user?.image)
 
   return (
     <aside
@@ -76,7 +75,7 @@ const Sidebar = async () => {
 
         {session && (
           <div className="flex flex-col gap-2 mt-auto">
-            <Logout image={user.image} />
+            <Logout image={session.user.image} />
           </div>
         )}
       </nav>
