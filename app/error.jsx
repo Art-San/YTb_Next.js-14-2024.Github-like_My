@@ -11,8 +11,8 @@ export default function Error({ error }) {
   }
 
   return (
-    <main className="flex flex-[3_3_0%] h-screen flex-col items-center justify-center bg-[#dad83cf4]">
-      <Image src={'/hero.png'} width={500} height={500} alt="Hero img" />
+    <main className="flex flex-[3_3_0%] h-screen flex-col items-center justify-center bg-[#222220f4] bg-opacity-50">
+      {/* <Image src={'/hero.png'} width={500} height={500} alt="Hero img" /> */}
       <h2 className="text-center">{errorMessage}</h2>
       <button
         asChild

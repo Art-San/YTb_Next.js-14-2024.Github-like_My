@@ -1,3 +1,4 @@
+'use client'
 import { IoLocationOutline } from 'react-icons/io5'
 import {
   RiGitRepositoryFill,
@@ -8,23 +9,32 @@ import { FaXTwitter } from 'react-icons/fa6'
 import { TfiThought } from 'react-icons/tfi'
 import { FaEye } from 'react-icons/fa'
 import Image from 'next/image'
+import Spinner from './Spinner'
+import { useGetGitProfile } from '@/store/useGetGitProfile'
+import { useEffect } from 'react'
+// import { useGetRepositories } from '@/store/useGetRepositories'
 
 const ProfileInfo = () => {
-  const userProfile = {
-    avatar_url:
-      'https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745',
-    bio: '👨🏻‍💻👨🏻‍💻👨🏻‍💻',
-    email: 'johndoe@gmail.com',
-    followers: 100,
-    following: 200,
-    html_url: 'https://github.com/burakorkmez',
-    location: 'Somewhere, Earth',
-    name: 'John Doe',
-    public_gists: 100,
-    public_repos: 100,
-    twitter_username: 'johndoe',
-    login: 'johndoe'
-  }
+  const [profile, loading, getProfileArt] = useGetGitProfile((state) => [
+    state.profile,
+    state.loading,
+    state.getProfileArt
+  ])
+  //  const getRepositories = useGetRepositories((state) => state.getRepositories)
+
+  const userProfile = profile
+
+  useEffect(() => {
+    getProfileArt()
+  }, [getProfileArt])
+
+  if (loading)
+    return (
+      <div className="lg:w-1/3 w-full flex flex-col gap-2 md:sticky md:top-10">
+        {' '}
+        <Spinner />
+      </div>
+    )
 
   return (
     <div className="lg:w-1/3 w-full flex flex-col gap-2 md:sticky md:top-10">
@@ -32,14 +42,16 @@ const ProfileInfo = () => {
         <div className="flex gap-4 items-center">
           {/* User Avatar */}
           <a href={userProfile?.html_url} target="_blank" rel="noreferrer">
-            <Image
-              width={96}
-              height={96}
-              src={userProfile?.avatar_url}
-              className="rounded-md mb-2"
-              alt=""
-              priority={false}
-            />
+            {userProfile?.avatar_url && (
+              <Image
+                width={96}
+                height={96}
+                src={userProfile?.avatar_url}
+                className="rounded-md mb-2"
+                alt=""
+                priority={false}
+              />
+            )}
           </a>
           {/* View on Github */}
           <div className="flex gap-2 items-center flex-col">

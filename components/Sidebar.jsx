@@ -11,7 +11,7 @@ import { auth } from '@/lib/auth'
 const Sidebar = async () => {
   const session = await auth()
 
-  console.log('session', session?.user?.image)
+  // console.log('session', session?.user?.image)
 
   return (
     <aside
