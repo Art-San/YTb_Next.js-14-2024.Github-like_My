@@ -9,30 +9,30 @@ import { FaXTwitter } from 'react-icons/fa6'
 import { TfiThought } from 'react-icons/tfi'
 import { FaEye } from 'react-icons/fa'
 import Image from 'next/image'
-// import Spinner from './Spinner'
-// import { useGetGitProfile } from '@/store/useGetGitProfile'
-// import { useEffect } from 'react'
-// import { useGetRepositories } from '@/store/useGetRepositories'
+import Spinner from './Spinner'
+import { useGetGitProfile } from '@/store/useGetGitProfile'
+import { useEffect } from 'react'
+import { useGetRepositories } from '@/store/useGetRepositories'
 
-const ProfileInfo = ({ userProfile }) => {
-  // const [profile, loading, getProfileArt] = useGetGitProfile((state) => [
-  //   state.profile,
-  //   state.loading,
-  //   state.getProfileArt
-  // ])
-  // const userProfile = profile
+const ProfileInfo = () => {
+  const [profile, loading, getProfileArt] = useGetGitProfile((state) => [
+    state.profile,
+    state.loading,
+    state.getProfileArt
+  ])
+  const userProfile = profile
 
-  // useEffect(() => {
-  //   getProfileArt()
-  // }, [getProfileArt])
+  useEffect(() => {
+    getProfileArt()
+  }, [getProfileArt])
 
-  // if (loading)
-  //   return (
-  //     <div className="lg:w-1/3 w-full flex flex-col gap-2 md:sticky md:top-10">
-  //       {' '}
-  //       <Spinner />
-  //     </div>
-  //   )
+  if (loading)
+    return (
+      <div className="lg:w-1/3 w-full flex flex-col gap-2 md:sticky md:top-10">
+        {' '}
+        <Spinner />
+      </div>
+    )
 
   return (
     <div className="lg:w-1/3 w-full flex flex-col gap-2 md:sticky md:top-10">

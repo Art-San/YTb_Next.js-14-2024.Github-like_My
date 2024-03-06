@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Sidebar from '@/components/Sidebar'
+import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
           <div className="max-w-5xl my-5 text-white mx-auto transition-all duration-300 flex-1">
             {children}
           </div>
+          <Toaster />
         </div>
       </body>
     </html>
