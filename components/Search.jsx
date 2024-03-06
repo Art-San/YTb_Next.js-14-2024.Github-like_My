@@ -42,8 +42,8 @@ const Search = ({ onSearch }) => {
   )
 }
 export default Search
-// 'use client'
 
+// 'use client' Zustand
 // import { useGetGitProfile } from '@/store/useGetGitProfile'
 // import { useState } from 'react'
 // import { IoSearch } from 'react-icons/io5'

@@ -15,6 +15,7 @@ import Image from 'next/image'
 // import { useGetRepositories } from '@/store/useGetRepositories'
 
 const ProfileInfo = ({ userProfile }) => {
+  // Zustand
   // const [profile, loading, getProfileArt] = useGetGitProfile((state) => [
   //   state.profile,
   //   state.loading,

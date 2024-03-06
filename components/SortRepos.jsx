@@ -24,7 +24,7 @@ const SortRepos = ({ onSort, sortType }) => {
 }
 export default SortRepos
 
-// 'use client'
+// 'use client' Zustand
 // import { useGetRepositories } from '@/store/useGetRepositories'
 // import { useEffect, useState } from 'react'
 
