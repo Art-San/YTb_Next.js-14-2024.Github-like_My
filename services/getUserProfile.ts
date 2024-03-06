@@ -1,4 +1,4 @@
-export const getUserProfileArt = async (username = 'Art-San') => {
+export const getUserProfileArt = async (username = 'burakorkmez') => {
   // const response = await fetch(`https://api.github.com/users/Art-San`)
   const response = await await fetch(`https://api.github.com/users/${username}`)
 

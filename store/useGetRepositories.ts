@@ -9,5 +9,12 @@ export const useGetRepositories = create((set) => ({
     const repos = await getRepositories(url)
     // console.log('useRepo repo', repo)
     set({ repos, loading: false })
+  },
+  sortRepositories: async (sortRepos) => {
+    // console.log('useRepo repos', sortRepos)
+    set({ loading: true })
+    const repos = sortRepos
+    console.log('useRepo repos', repos)
+    set({ repos, loading: false })
   }
 }))
