@@ -14,7 +14,7 @@ export const useGetRepositories = create((set) => ({
     // console.log('useRepo repos', sortRepos)
     set({ loading: true })
     const repos = sortRepos
-    console.log('useRepo repos', repos)
+    // console.log('useGetRepositories repos', repos)
     set({ repos, loading: false })
   }
 }))
