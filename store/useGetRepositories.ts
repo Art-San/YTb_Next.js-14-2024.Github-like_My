@@ -1,4 +1,3 @@
-import { getRepositories } from '@/services/getRepositories'
 import { create } from 'zustand'
 interface Repository {
   id: string
@@ -9,7 +8,9 @@ export const useGetRepositories = create((set) => ({
   loading: false,
   getRepositories: async (url: string) => {
     set({ loading: true })
-    const repos = await getRepositories(url)
+    const response = await fetch(url)
+    const repos = await response.json()
+
     repos.sort((a, b) => {
       const dateA = new Date(a.created_at)
       const dateB = new Date(b.created_at)
@@ -20,15 +21,16 @@ export const useGetRepositories = create((set) => ({
     set({ repos, loading: false })
   },
   sortRepositories: async (sortRepos: Repository[]) => {
-    // console.log('useRepo repos', sortRepos)
     set({ loading: true })
     const repos = sortRepos
-    console.log('useGetRepositories repos', repos)
+
     set({ repos, loading: false })
   }
 }))
 
 // вариант от gpt
+// import { getRepositories } from '@/services/getRepositories'
+// import { create } from 'zustand'
 // export const useGetRepositories = create((set) => ({
 //   repos: [],
 //   loading: false,

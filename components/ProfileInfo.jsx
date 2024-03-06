@@ -12,7 +12,6 @@ import Image from 'next/image'
 import Spinner from './Spinner'
 import { useGetGitProfile } from '@/store/useGetGitProfile'
 import { useEffect } from 'react'
-import { useGetRepositories } from '@/store/useGetRepositories'
 
 const ProfileInfo = () => {
   const [profile, loading, getProfileArt] = useGetGitProfile((state) => [
