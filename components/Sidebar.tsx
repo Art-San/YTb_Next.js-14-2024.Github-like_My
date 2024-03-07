@@ -75,7 +75,7 @@ const Sidebar = async () => {
 
         {session && (
           <div className="flex flex-col gap-2 mt-auto">
-            <Logout image={session.user.image} />
+            <Logout image={session?.user?.image} />
           </div>
         )}
       </nav>

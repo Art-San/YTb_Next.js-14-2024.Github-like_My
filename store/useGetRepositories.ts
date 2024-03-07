@@ -1,17 +1,17 @@
 import { create } from 'zustand'
-interface Repository {
+interface IRepository {
   id: string
   created_at: string
 }
 export const useGetRepositories = create((set) => ({
-  repos: [] as Repository[],
+  repos: [] as IRepository[],
   loading: false,
   getRepositories: async (url: string) => {
     set({ loading: true })
     const response = await fetch(url)
     const repos = await response.json()
 
-    repos.sort((a, b) => {
+    repos.sort((a: any, b: any) => {
       const dateA = new Date(a.created_at)
       const dateB = new Date(b.created_at)
       return dateB.getTime() - dateA.getTime() // Используйте getTime() для сравнения дат
@@ -20,7 +20,7 @@ export const useGetRepositories = create((set) => ({
 
     set({ repos, loading: false })
   },
-  sortRepositories: async (sortRepos: Repository[]) => {
+  sortRepositories: async (sortRepos: IRepository[]) => {
     set({ loading: true })
     const repos = sortRepos
 

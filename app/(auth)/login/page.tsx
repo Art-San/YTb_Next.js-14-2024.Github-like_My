@@ -1,6 +1,7 @@
+import { handleGithubLogin } from '@/lib/action'
 import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
-import { handleGithubLogin } from '@/lib/action'
+
 const LoginPage = () => {
   return (
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">

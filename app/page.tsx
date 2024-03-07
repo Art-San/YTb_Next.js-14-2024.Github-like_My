@@ -6,8 +6,9 @@ import SortRepos from '@/components/SortRepos'
 const HomePage = () => {
   return (
     <div className="m-4">
-      <Search />
-      <SortRepos />
+      {/* <Search /> */}
+      {/* <SortRepos /> */}
+      <h1>HOME PAGE</h1>
       <div className="flex gap-4 flex-col lg:flex-row justify-center items-start">
         <ProfileInfo />
         <Repos />

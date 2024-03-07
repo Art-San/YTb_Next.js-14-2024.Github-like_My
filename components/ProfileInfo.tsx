@@ -22,7 +22,7 @@ const ProfileInfo = () => {
   const userProfile = profile
 
   useEffect(() => {
-    getProfileArt()
+    getProfileArt('burakorkmez')
   }, [getProfileArt])
 
   if (loading)

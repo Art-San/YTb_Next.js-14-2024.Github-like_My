@@ -10,7 +10,11 @@ export const metadata = {
   description: 'You will always find your favorite repository.'
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -19,7 +23,7 @@ export default function RootLayout({ children }) {
           <div className="max-w-5xl my-5 text-white mx-auto transition-all duration-300 flex-1">
             {children}
           </div>
-          <Toaster />
+          {/* <Toaster /> */}
         </div>
       </body>
     </html>

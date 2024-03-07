@@ -1,3 +1,18 @@
+interface Auth {
+  user?: {
+    name: string
+    email: string
+    image: string
+  }
+  expires: string
+}
+
+interface Request {
+  nextUrl?: {
+    pathname: string
+  }
+}
+
 export const authConfig = {
   providers: [],
   pages: {
@@ -24,7 +39,7 @@ export const authConfig = {
     //   // console.log('auth.config  session session', session)
     //   return session
     // },
-    authorized({ auth, request }) {
+    authorized({ auth, request }: { auth: Auth; request: Request }) {
       const user = auth?.user
       // console.log('authConfig user ', user)
       // console.log('auth.config authorized user', user)
@@ -41,7 +56,13 @@ export const authConfig = {
 
       // ТОЛЬКО НЕ АУТЕНТИФИЦИРОВАННЫЕ ПОЛЬЗОВАТЕЛИ МОГУТ достигнуть НА СТРАНИЦУ ВХОДА
       if ((isOnLoginPage && user) || (isOnSignUpPage && user)) {
-        return Response.redirect(new URL('/', request.nextUrl))
+        return Response.redirect(
+          new URL(
+            request.nextUrl ? request.nextUrl.pathname : '/',
+            'http://localhost:3000'
+          )
+        )
+        // return Response.redirect(new URL('/', request.nextUrl))
       }
 
       return true
