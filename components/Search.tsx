@@ -1,14 +1,14 @@
 'use client'
 
 import { useGetGitProfile } from '@/store/useGetGitProfile'
-import { useState } from 'react'
+import { useState, FormEventHandler } from 'react'
 import { IoSearch } from 'react-icons/io5'
 
 const Search = () => {
   const [search, setSearch] = useState('')
   const getProfileArt = useGetGitProfile((state) => state.getProfileArt)
 
-  const handleSubmit = async (e) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
     await getProfileArt(search)
     setSearch('')
