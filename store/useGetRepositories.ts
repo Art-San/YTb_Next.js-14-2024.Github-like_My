@@ -18,7 +18,13 @@ interface IRepository {
   getRepositories: (value: string) => Promise<void>
   sortRepositories: (sortType: string) => void
 }
-
+function sorting(arr: Repository[]) {
+  arr.sort((a: any, b: any) => {
+    const dateA = new Date(a.created_at)
+    const dateB = new Date(b.created_at)
+    return dateB.getTime() - dateA.getTime() // Используйте getTime() для сравнения дат
+  })
+}
 export const useGetRepositories = create<IRepository>((set) => ({
   repos: [],
   loading: false,
@@ -27,11 +33,12 @@ export const useGetRepositories = create<IRepository>((set) => ({
     const response = await fetch(url)
     const repos = await response.json()
 
-    repos.sort((a: any, b: any) => {
-      const dateA = new Date(a.created_at)
-      const dateB = new Date(b.created_at)
-      return dateB.getTime() - dateA.getTime() // Используйте getTime() для сравнения дат
-    })
+    sorting(repos)
+    // repos.sort((a: any, b: any) => {
+    //   const dateA = new Date(a.created_at)
+    //   const dateB = new Date(b.created_at)
+    //   return dateB.getTime() - dateA.getTime() // Используйте getTime() для сравнения дат
+    // })
 
     set({ repos, loading: false })
   },
@@ -39,10 +46,11 @@ export const useGetRepositories = create<IRepository>((set) => ({
     set((state) => {
       let sortedRepos = [...state.repos]
       if (sortType === 'recent') {
-        sortedRepos.sort(
-          (a: any, b: any) =>
-            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-        )
+        sorting(sortedRepos)
+        // sortedRepos.sort(
+        //   (a: any, b: any) =>
+        //     new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        // )
       } else if (sortType === 'stars') {
         sortedRepos.sort(
           (a: any, b: any) => b.stargazers_count - a.stargazers_count
