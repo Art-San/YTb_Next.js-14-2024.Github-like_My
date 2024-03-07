@@ -1,10 +1,30 @@
 import { create } from 'zustand'
+
+export interface Repository {
+  id?: string
+  created_at?: string
+  clone_url?: string
+  html_url?: string
+  name?: string
+  stargazers_count?: string
+  forks_count?: string
+  language?: string
+  description?: string
+}
+
 interface IRepository {
+  repos: Repository[]
+  loading: boolean
+  getRepositories: (value: string) => Promise<void>
+}
+
+interface IRepositorySort {
   id: string
   created_at: string
 }
-export const useGetRepositories = create((set) => ({
-  repos: [] as IRepository[],
+
+export const useGetRepositories = create<IRepository>((set) => ({
+  repos: [],
   loading: false,
   getRepositories: async (url: string) => {
     set({ loading: true })
@@ -20,7 +40,7 @@ export const useGetRepositories = create((set) => ({
 
     set({ repos, loading: false })
   },
-  sortRepositories: async (sortRepos: IRepository[]) => {
+  sortRepositories: async (sortRepos: IRepositorySort[]) => {
     set({ loading: true })
     const repos = sortRepos
 

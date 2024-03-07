@@ -14,7 +14,7 @@ const Repos = ({ alwaysFullWidth = false }) => {
     state.getRepositories
   ])
 
-  console.log('repos', repos)
+  console.log('repos[0]', repos[0])
   useEffect(() => {
     if (profile && profile.repos_url) {
       getRepositories(profile.repos_url)
