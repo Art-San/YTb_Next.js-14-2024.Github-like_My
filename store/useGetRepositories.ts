@@ -19,11 +19,6 @@ interface IRepository {
   sortRepositories: (sortType: string) => void
 }
 
-interface IRepositorySort {
-  id: string
-  created_at: string
-}
-
 export const useGetRepositories = create<IRepository>((set) => ({
   repos: [],
   loading: false,
