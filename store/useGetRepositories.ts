@@ -1,17 +1,6 @@
 // вариант от gpt No: 4 рефакторинг
+import { Repository } from '@/models/models'
 import { create } from 'zustand'
-
-export interface Repository {
-  id?: string
-  created_at?: string
-  clone_url?: string
-  html_url?: string
-  name?: string
-  stargazers_count?: number
-  forks_count?: number
-  language?: string
-  description?: string
-}
 
 interface IRepository {
   repos: Repository[]

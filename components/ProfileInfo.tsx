@@ -53,7 +53,7 @@ const ProfileInfo = () => {
           {/* View on Github */}
           <div className="flex gap-2 items-center flex-col">
             <a
-              href={userProfile.html_url}
+              href={userProfile?.html_url}
               target="_blank"
               rel="noreferrer"
               className="bg-glass font-medium w-full text-xs p-2 rounded-md cursor-pointer border border-blue-400 flex items-center gap-2"
@@ -68,7 +68,7 @@ const ProfileInfo = () => {
         {userProfile?.bio ? (
           <div className="flex items-center gap-2">
             <TfiThought />
-            <p className="text-sm">{userProfile?.bio.substring(0, 60)}...</p>
+            <p className="text-sm">{userProfile?.bio?.substring(0, 60)}...</p>
           </div>
         ) : null}
 
