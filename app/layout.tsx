@@ -23,7 +23,7 @@ export default function RootLayout({
           <div className="max-w-5xl my-5 text-white mx-auto transition-all duration-300 flex-1">
             {children}
           </div>
-          {/* <Toaster /> */}
+          <Toaster />
         </div>
       </body>
     </html>

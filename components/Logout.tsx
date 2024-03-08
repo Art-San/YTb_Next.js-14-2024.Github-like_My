@@ -2,11 +2,11 @@ import { handleLogOut } from '@/lib/action'
 import Image from 'next/image'
 import { MdLogout } from 'react-icons/md'
 
-// interface IProp {
-//   image: string
-// }
+interface IProp {
+  image: string
+}
 
-const Logout = ({ image }) => {
+const Logout = ({ image }: IProp) => {
   return (
     <>
       <Image

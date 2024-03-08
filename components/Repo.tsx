@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 import Image from 'next/image'
 import { formatDate } from '@/utils/functions'
 import { PROGRAMMING_LANGUAGES } from '@/utils/constants'
-import { Repository } from '@/store/useGetRepositories'
+import { Repository } from '@/models/models'
 
 interface IRepo {
   repo: Repository

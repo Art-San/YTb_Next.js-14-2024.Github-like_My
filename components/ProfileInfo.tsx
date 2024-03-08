@@ -63,7 +63,6 @@ const ProfileInfo = () => {
             </a>
           </div>
         </div>
-
         {/* User Bio */}
         {userProfile?.bio ? (
           <div className="flex items-center gap-2">
@@ -71,7 +70,6 @@ const ProfileInfo = () => {
             <p className="text-sm">{userProfile?.bio?.substring(0, 60)}...</p>
           </div>
         ) : null}
-
         {/* Location */}
         {userProfile?.location ? (
           <div className="flex items-center gap-2">
@@ -79,7 +77,6 @@ const ProfileInfo = () => {
             {userProfile?.location}
           </div>
         ) : null}
-
         {/* Twitter Username */}
         {userProfile?.twitter_username ? (
           <a
@@ -92,7 +89,6 @@ const ProfileInfo = () => {
             {userProfile?.twitter_username}
           </a>
         ) : null}
-
         {/* Member Since Date */}
         <div className="my-2">
           <p className="text-gray-600 font-bold text-sm">Member since</p>
@@ -106,7 +102,6 @@ const ProfileInfo = () => {
             <p className="">{userProfile.email}</p>
           </div>
         )}
-
         {/* Full Name */}
         {userProfile?.name && (
           <div className="my-2">
@@ -114,7 +109,6 @@ const ProfileInfo = () => {
             <p className="">{userProfile?.name}</p>
           </div>
         )}
-
         {/* Username */}
         <div className="my-2">
           <p className="text-gray-600 font-bold text-sm">Username</p>

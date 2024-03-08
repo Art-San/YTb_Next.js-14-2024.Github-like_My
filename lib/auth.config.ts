@@ -1,3 +1,42 @@
+// import { NextRequest, NextResponse } from 'next/server';
+// import { Session } from 'next-auth';
+
+// export const authConfig = {
+//  providers: [],
+//  pages: {
+//     signIn: '/login'
+//  },
+//  callbacks: {
+//     authorized: async ({ request, auth }: { request: NextRequest; auth: Session | null }) => {
+//       // Ваша логика авторизации здесь
+//       // Например, проверка наличия пользователя в сессии
+//       if (!auth) {
+//         // Если пользователь не авторизован, возвращаем false или перенаправляем на страницу входа
+//         return false;
+//       }
+
+//       // Если пользователь авторизован, проверяем, на какую страницу он пытается перейти
+//       const isOnLikesPage = request.nextUrl?.pathname.startsWith('/likes');
+//       const isOnExplorePage = request.nextUrl?.pathname.startsWith('/explore');
+//       const isOnSignUpPage = request.nextUrl?.pathname.startsWith('/signup');
+//       const isOnLoginPage = request.nextUrl?.pathname.startsWith('/login');
+
+//       // Проверяем, разрешено ли пользователю переходить на определенные страницы
+//       if ((isOnLikesPage || isOnExplorePage) && !auth.user) {
+//         // Если пользователь не авторизован и пытается перейти на страницы /likes или /explore, возвращаем false
+//         return false;
+//       }
+
+//       // Если пользователь авторизован и пытается перейти на страницу входа или регистрации, перенаправляем его на главную страницу
+//       if ((isOnLoginPage || isOnSignUpPage) && auth.user) {
+//         return NextResponse.redirect('/');
+//       }
+
+//       // В остальных случаях разрешаем доступ
+//       return true;
+//     }
+//  }
+// }
 interface Auth {
   user?: {
     name: string

@@ -3,7 +3,6 @@
 import { signIn, signOut } from './auth'
 
 export const handleGithubLogin = async () => {
-  console.log('handleGithubLogin !!!')
   await signIn('github')
 }
 
