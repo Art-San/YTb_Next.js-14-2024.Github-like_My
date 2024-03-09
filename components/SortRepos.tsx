@@ -1,10 +1,16 @@
 // вариант от gpt No: 1
 'use client'
+import { useGetGitProfile } from '@/store/useGetGitProfile'
 import { useGetRepositories } from '@/store/useGetRepositories'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 const SortRepos = () => {
   const [sortType, setSortType] = useState('recent')
   const sortRepositories = useGetRepositories((state) => state.sortRepositories)
+  const profile = useGetGitProfile((state) => state.profile)
+
+  useEffect(() => {
+    setSortType('recent')
+  }, [profile])
 
   const BUTTONS = [
     { type: 'recent', text: 'Most Recent' },

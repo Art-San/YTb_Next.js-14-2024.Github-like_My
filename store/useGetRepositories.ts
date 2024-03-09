@@ -8,12 +8,7 @@ interface IRepository {
   getRepositories: (value: string) => Promise<void>
   sortRepositories: (sortType: string) => void
 }
-// В функции сортировки
-;(a: Repository, b: Repository) => {
-  const dateA = new Date(a.created_at || Date.now()).getTime()
-  const dateB = new Date(b.created_at || Date.now()).getTime()
-  return dateB - dateA
-}
+
 export const useGetRepositories = create<IRepository>((set) => ({
   repos: [],
   loading: false,
