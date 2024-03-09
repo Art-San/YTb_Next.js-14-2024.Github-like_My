@@ -23,9 +23,9 @@ const ProfileInfo = () => {
   const userProfile = profile
   const memberSince = formatMemberSince(userProfile?.created_at)
 
-  useEffect(() => {
-    getProfileArt('Art-San')
-  }, [])
+  // useEffect(() => {
+  //   getProfileArt('Art-San')
+  // }, [])
   // useEffect(() => {
   //   getProfileArt('burakorkmez')
   // }, [getProfileArt])
