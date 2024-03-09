@@ -1,5 +1,18 @@
-export function formatMemberSince(inputDateString) {
-  const options = { month: 'short', day: '2-digit', year: 'numeric' }
+// export function formatMemberSince(inputDateString: any) {
+//   const options = { month: 'short', day: '2-digit', year: 'numeric' }
+//   const formattedDate = new Date(inputDateString).toLocaleDateString(
+//     'en-US',
+//     options
+//   )
+//   return formattedDate
+// }
+
+export function formatMemberSince(inputDateString: any) {
+  const options: Intl.DateTimeFormatOptions = {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric'
+  }
   const formattedDate = new Date(inputDateString).toLocaleDateString(
     'en-US',
     options

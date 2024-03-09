@@ -12,6 +12,7 @@ import Image from 'next/image'
 import Spinner from './Spinner'
 import { useGetGitProfile } from '@/store/useGetGitProfile'
 import { useEffect } from 'react'
+import { formatMemberSince } from '@/utils/functions'
 
 const ProfileInfo = () => {
   const [profile, loading, getProfileArt] = useGetGitProfile((state) => [
@@ -20,6 +21,7 @@ const ProfileInfo = () => {
     state.getProfileArt
   ])
   const userProfile = profile
+  const memberSince = formatMemberSince(userProfile?.created_at)
 
   useEffect(() => {
     getProfileArt('burakorkmez')
@@ -92,7 +94,7 @@ const ProfileInfo = () => {
         {/* Member Since Date */}
         <div className="my-2">
           <p className="text-gray-600 font-bold text-sm">Member since</p>
-          <p className="">21 Sep, 2023</p>
+          <p className="">{memberSince}</p>
         </div>
 
         {/* Email Address */}

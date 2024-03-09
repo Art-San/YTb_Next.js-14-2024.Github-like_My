@@ -11,7 +11,6 @@ export const useGetGitProfile = create<IProfileState>()((set) => ({
   profile: null,
   loading: false,
   getProfileArt: async (username) => {
-    console.log(3, username)
     set({ loading: true })
     const response = await fetch(`https://api.github.com/users/${username}`)
     // const response = await fetch(`https://api.github.com/users/Art-San`)

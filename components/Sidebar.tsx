@@ -1,17 +1,16 @@
 import { IoHomeSharp } from 'react-icons/io5'
-import { FaHeart } from 'react-icons/fa'
+import { FaGithub, FaHeart } from 'react-icons/fa'
 import { MdOutlineExplore } from 'react-icons/md'
 import { PiSignInBold } from 'react-icons/pi'
 import { MdEditDocument } from 'react-icons/md'
 import Logout from './Logout'
 import Link from 'next/link'
-import Image from 'next/image'
 import { auth } from '@/lib/auth'
 
 const Sidebar = async () => {
   const session = await auth()
 
-  // console.log('session', session?.user?.image)
+  // console.log('Sidebar session', session?.user?.image)
 
   return (
     <aside
@@ -19,16 +18,13 @@ const Sidebar = async () => {
       overflow-y-auto border-r bg-glass"
     >
       <nav className="h-full flex flex-col gap-3">
-        <Link href="/" className="flex justify-center w-auto h-auto">
-          <Image
-            src="/github.svg"
-            alt="Github Logo"
-            width="0"
-            height="0"
-            className=" w-6 h-6"
-          />
+        <Link
+          href="/"
+          className="p-1.5 flex justify-center transition-colors duration-200 rounded-lg 
+					hover:bg-gray-800"
+        >
+          <FaGithub size={25} />
         </Link>
-
         <Link
           href="/"
           className="p-1.5 flex justify-center transition-colors duration-200 rounded-lg 
