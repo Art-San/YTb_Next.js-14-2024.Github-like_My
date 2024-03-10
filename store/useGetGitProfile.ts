@@ -1,6 +1,7 @@
 import { IUser } from '@/models/models'
+import { getUserProfile } from '@/services/getUserProfile'
 import { create } from 'zustand'
-import { persist, devtools } from 'zustand/middleware'
+import { persist } from 'zustand/middleware'
 
 export interface IProfileState {
   profile: IUser | null
@@ -15,9 +16,9 @@ export const useGetGitProfile = create<IProfileState>()(
       loading: false,
       getProfileArt: async (username) => {
         set({ loading: true })
-        const response = await fetch(`https://api.github.com/users/${username}`)
-        // const response = await fetch(`https://api.github.com/users/Art-San`)
-        set({ profile: await response.json(), loading: false })
+        const response = await getUserProfile(username)
+
+        set({ profile: response, loading: false })
       }
     }),
     {

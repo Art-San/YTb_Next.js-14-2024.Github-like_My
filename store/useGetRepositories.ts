@@ -1,5 +1,6 @@
 // вариант от gpt No: 4 рефакторинг
 import { Repository } from '@/models/models'
+import { getRepositories } from '@/services/getRepositories'
 import { create } from 'zustand'
 
 interface IRepository {
@@ -15,8 +16,8 @@ export const useGetRepositories = create<IRepository>((set) => ({
   getRepositories: async (url: string) => {
     set({ loading: true })
     try {
-      const response = await fetch(url)
-      const repos = await response.json()
+      // const response = await fetch(url)
+      const repos = await getRepositories(url)
       set({
         repos: repos.sort((a: Repository, b: Repository) => {
           const dateA = new Date(a.created_at || Date.now()).getTime()

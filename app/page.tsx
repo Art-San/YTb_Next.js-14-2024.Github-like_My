@@ -7,11 +7,6 @@ import Search2 from '@/components/Search2'
 import SortRepos from '@/components/SortRepos'
 
 const HomePage = () => {
-  console.log('process.env.MONGO:', process.env.MONGO)
-  console.log(
-    'process.env.VITE_GITHUB_API_KEY_7DAY:',
-    process.env.VITE_GITHUB_API_KEY_7DAY
-  )
   return (
     <div className="m-4">
       {/* <Search /> */}

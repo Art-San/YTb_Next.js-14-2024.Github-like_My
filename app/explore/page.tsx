@@ -26,19 +26,19 @@ const languages = [
 ]
 
 const ExplorePage = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState('')
-  const [loading, error, languageRepos, getReposLanguage] = useGetLangRepo(
+  // const [selectedLanguage, setSelectedLanguage] = useState('')
+  const [loading, name, languageRepos, getReposLanguage] = useGetLangRepo(
     (state) => [
       state.loading,
-      state.error,
+      state.name,
       state.languageRepos,
       state.getReposLanguage
     ]
   )
 
-  const clickHandler = async (name: string) => {
-    setSelectedLanguage(name)
-    await getReposLanguage(name)
+  const clickHandler = async (language: string) => {
+    // setSelectedLanguage(language)
+    await getReposLanguage(language)
   }
 
   return (
@@ -63,7 +63,7 @@ const ExplorePage = () => {
         {languageRepos?.length > 0 && (
           <h2 className="text-lg font-semibold text-center my-4">
             <span className="bg-blue-100 text-blue-800 font-medium me-2 px-2.5 py-0.5 rounded-full ">
-              {selectedLanguage.toUpperCase()}{' '}
+              {name?.toUpperCase()}{' '}
             </span>
             Repositories
           </h2>
@@ -71,7 +71,7 @@ const ExplorePage = () => {
         {!loading && languageRepos?.length > 0 && (
           <Repos2 repos={languageRepos} alwaysFullWidth />
         )}
-        {error && <p>{error}</p>}
+
         {loading && <Spinner />}
       </div>
     </div>
