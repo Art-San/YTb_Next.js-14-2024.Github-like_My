@@ -14,6 +14,11 @@ export const useGetLangRepo = create<IServerResponse>((set) => ({
   loading: false,
   getReposLanguage: async (language: string) => {
     set({ loading: true })
+    console.log('process.env.MONGO:', process.env.MONGO)
+    console.log(
+      'process.env.VITE_GITHUB_API_KEY_7DAY:',
+      process.env.VITE_GITHUB_API_KEY_7DAY
+    )
     const response = await fetch(
       `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`,
       {

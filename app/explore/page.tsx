@@ -36,12 +36,6 @@ const ExplorePage = () => {
     ]
   )
 
-  console.log(
-    'process.env.VITE_GITHUB_API_KEY_7DAY',
-    process.env.VITE_GITHUB_API_KEY_7DAY
-  )
-  console.log('process.env.NEXTAUTH_URl', process.env.NEXTAUTH_URL)
-
   const clickHandler = async (name: string) => {
     setSelectedLanguage(name)
     await getReposLanguage(name)
