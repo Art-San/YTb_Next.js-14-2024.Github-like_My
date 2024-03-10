@@ -10,19 +10,6 @@ interface IServerResponse {
   getReposLanguage: (value: string) => Promise<void>
 }
 
-// export const useGetLangRepo = create<IServerResponse>((set) => ({
-//   languageRepos: [],
-
-//   loading: false,
-//   getReposLanguage: async (language: string) => {
-//     set({ loading: true })
-
-//     const data = await getReposLanguage(language)
-
-//     set({ languageRepos: data.items, loading: false })
-//   }
-// }))
-
 export const useGetLangRepo = create<IServerResponse>()(
   persist(
     (set) => ({

@@ -16,6 +16,7 @@ export const useGetGitProfile = create<IProfileState>()(
       loading: false,
       getProfileArt: async (username) => {
         set({ loading: true })
+
         const response = await getUserProfile(username)
 
         set({ profile: response, loading: false })

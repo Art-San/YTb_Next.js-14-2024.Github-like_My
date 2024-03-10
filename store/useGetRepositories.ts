@@ -16,7 +16,6 @@ export const useGetRepositories = create<IRepository>((set) => ({
   getRepositories: async (url: string) => {
     set({ loading: true })
     try {
-      // const response = await fetch(url)
       const repos = await getRepositories(url)
       set({
         repos: repos.sort((a: Repository, b: Repository) => {
