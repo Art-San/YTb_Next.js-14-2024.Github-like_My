@@ -1,4 +1,5 @@
 import { IUser } from '@/models/models'
+import { getGitProfileSearch } from '@/services/getGitProfileSearch'
 import { create } from 'zustand'
 
 interface IServerResponse {
@@ -12,14 +13,9 @@ export const useSearchGitProfile = create<IServerResponse>((set) => ({
   loading: false,
   getSearchProfile: async (search: string) => {
     set({ loading: true })
-    const response = await fetch(
-      `https://api.github.com/search/users?q=${search}&per_page=10`
-    )
-    if (!response.ok) {
-      throw new Error('Failed to fetch user serverResponse')
-    }
-    const data = await response.json()
 
-    set({ serverResponse: data.items, loading: false }) // Предполагается, что вы хотите получить только первого пользователя из результатов поиска
+    const response = await getGitProfileSearch(search)
+
+    set({ serverResponse: response.items, loading: false }) // Предполагается, что вы хотите получить только первого пользователя из результатов поиска
   }
 }))

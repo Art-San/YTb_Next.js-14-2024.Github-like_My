@@ -6,7 +6,7 @@
 //   )
 //   return formattedDate
 // }
-
+// GPT написал типы
 export function formatMemberSince(inputDateString: any) {
   const options: Intl.DateTimeFormatOptions = {
     month: 'short',
