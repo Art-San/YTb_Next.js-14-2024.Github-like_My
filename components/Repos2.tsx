@@ -1,8 +1,14 @@
+import { Repository } from '@/models/models'
 import Repo from './Repo'
 
-const Repos2 = ({ repos, alwaysFullWidth = false }) => {
-  const className = alwaysFullWidth ? 'w-full' : 'lg:w-2/3 w-full'
+interface IPropsRepos {
+  repos: Repository[]
+  alwaysFullWidth: boolean
+}
 
+const Repos2 = ({ repos, alwaysFullWidth = false }: IPropsRepos) => {
+  const className = alwaysFullWidth ? 'w-full' : 'lg:w-2/3 w-full'
+  console.log('repos', repos[0])
   return (
     <div className={`${className} bg-glass rounded-lg px-8 py-6`}>
       <ol className="relative border-s border-gray-200">

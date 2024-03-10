@@ -5,38 +5,48 @@ import toast from 'react-hot-toast'
 import Image from 'next/image'
 import Spinner from '@/components/Spinner'
 import Repos2 from '@/components/Repos2'
+import { useGetLangRepo } from '@/store/useGetLanguageRepos'
 
-//2:02:00
+const languages = [
+  {
+    id: 1,
+    name: 'javascript',
+    path: '/javascript.svg',
+    alt: 'JavaScript logo'
+  },
+  {
+    id: 2,
+    name: 'typescript',
+    path: '/typescript.svg',
+    alt: 'TypeScript logo'
+  },
+  { id: 3, name: 'c++', path: '/c++.svg', alt: 'C++ logo' },
+  { id: 4, name: 'python', path: '/python.svg', alt: 'Python logo' },
+  { id: 5, name: 'java', path: '/java.svg', alt: 'Java logo' }
+]
+
 const ExplorePage = () => {
-  // https://api.github.com/search/repositories?q=language:javascript&sort=stars&order=desc&per_page=10
-  const [loading, setLoading] = useState(false)
-  const [repos, setRepos] = useState([])
   const [selectedLanguage, setSelectedLanguage] = useState('')
+  const [loading, error, languageRepos, getReposLanguage] = useGetLangRepo(
+    (state) => [
+      state.loading,
+      state.error,
+      state.languageRepos,
+      state.getReposLanguage
+    ]
+  )
 
-  const exploreRepos = async (language: string) => {
-    setLoading(true)
-    setRepos([])
-    try {
-      const res = await fetch(
-        `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`
-        // {
-        //   headers: {
-        //     // 5000 запросов в час, так как есть ключ, но он действует до 02.03.24
-        //     authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY_7DAY}` // так нельзя делать, ключ все ровно попадет на фронт
-        //   }
-        // }
-      )
-      const repos = await res.json()
-      console.log('ExplorePage repos', repos.items)
-      setRepos(repos.items)
+  console.log(
+    'process.env.VITE_GITHUB_API_KEY_7DAY',
+    process.env.VITE_GITHUB_API_KEY_7DAY
+  )
+  console.log('process.env.NEXTAUTH_URl', process.env.NEXTAUTH_URL)
 
-      setSelectedLanguage(language)
-    } catch (error) {
-      toast.error(error.message)
-    } finally {
-      setLoading(false)
-    }
+  const clickHandler = async (name: string) => {
+    setSelectedLanguage(name)
+    await getReposLanguage(name)
   }
+
   return (
     <div className="px-4">
       <div className="bg-glass max-w-2xl mx-auto rounded-md p-4">
@@ -44,49 +54,19 @@ const ExplorePage = () => {
           Explore Popular Repositories
         </h1>
         <div className="flex flex-wrap gap-2 my-2 justify-center">
-          <Image
-            width={0}
-            height={0}
-            src="/javascript.svg"
-            alt="JavaScript"
-            className="h-11 w-11 sm:h-20 cursor-pointer"
-            onClick={() => exploreRepos('javascript')}
-          />
-          <Image
-            width={0}
-            height={0}
-            src="/typescript.svg"
-            alt="TypeScript logo"
-            className="h-11 w-11 sm:h-20 cursor-pointer"
-            onClick={() => exploreRepos('typescript')}
-          />
-          <Image
-            width={0}
-            height={0}
-            src="/c++.svg"
-            alt="C++ logo"
-            className="h-11 w-11 sm:h-20 cursor-pointer"
-            onClick={() => exploreRepos('c++')}
-          />
-          <Image
-            width={0}
-            height={0}
-            src="/python.svg"
-            alt="Python logo"
-            className="h-11 w-11 sm:h-20 cursor-pointer"
-            onClick={() => exploreRepos('python')}
-          />
-
-          <Image
-            width={0}
-            height={0}
-            src="/java.svg"
-            alt="Java logo"
-            className="h-11 w-11 sm:h-20 cursor-pointer"
-            onClick={() => exploreRepos('java')}
-          />
+          {languages.map((item) => (
+            <Image
+              key={item.id}
+              width={0}
+              height={0}
+              src={item.path}
+              alt={item.alt}
+              className="h-11 w-11 sm:h-20 cursor-pointer"
+              onClick={() => clickHandler(item.name)}
+            />
+          ))}
         </div>
-        {repos?.length > 0 && (
+        {languageRepos?.length > 0 && (
           <h2 className="text-lg font-semibold text-center my-4">
             <span className="bg-blue-100 text-blue-800 font-medium me-2 px-2.5 py-0.5 rounded-full ">
               {selectedLanguage.toUpperCase()}{' '}
@@ -94,64 +74,13 @@ const ExplorePage = () => {
             Repositories
           </h2>
         )}
-        {!loading && repos?.length > 0 && (
-          <Repos2 repos={repos} alwaysFullWidth />
+        {!loading && languageRepos?.length > 0 && (
+          <Repos2 repos={languageRepos} alwaysFullWidth />
         )}
+        {error && <p>{error}</p>}
         {loading && <Spinner />}
       </div>
     </div>
   )
 }
 export default ExplorePage
-
-// import Image from 'next/image'
-
-// const ExplorePage = () => {
-//   return (
-//     <div className="px-4">
-//       <div className="bg-glass max-w-2xl mx-auto rounded-md p-4">
-//         <h1 className="text-xl font-bold text-center">
-//           Explore Popular Repositories
-//         </h1>
-//         <div className="flex flex-wrap gap-2 my-2 justify-center">
-//           <Image
-//             width={0}
-//             height={0}
-//             src="/javascript.svg"
-//             alt="JavaScript"
-//             className="h-11 w-11 sm:h-20 cursor-pointer"
-//           />
-//           <Image
-//             width={0}
-//             height={0}
-//             src="/typescript.svg"
-//             alt="TypeScript logo"
-//             className="h-11 w-11 sm:h-20 cursor-pointer"
-//           />
-//           <Image
-//             width={0}
-//             height={0}
-//             src="/c++.svg"
-//             alt="C++ logo"
-//             className="h-11 w-11 sm:h-20 cursor-pointer"
-//           />
-//           <Image
-//             width={0}
-//             height={0}
-//             src="/python.svg"
-//             alt="Python logo"
-//             className="h-11 w-11 sm:h-20 cursor-pointer"
-//           />
-//           <Image
-//             width={0}
-//             height={0}
-//             src="/java.svg"
-//             alt="Java logo"
-//             className="h-11 w-11 sm:h-20 cursor-pointer"
-//           />
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-// export default ExplorePage
