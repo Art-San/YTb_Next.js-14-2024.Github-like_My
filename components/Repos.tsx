@@ -1,37 +1,13 @@
-'use client'
+import { Repository } from '@/models/models'
 import Repo from './Repo'
-import { useEffect } from 'react'
-import { useGetGitProfile } from '@/store/useGetGitProfile'
-import { useGetRepositories } from '@/store/useGetRepositories'
-import Spinner from './Spinner'
 
-const Repos = ({ alwaysFullWidth = false }) => {
+interface IPropsRepos {
+  repos: Repository[]
+  alwaysFullWidth: boolean
+}
+
+const Repos = ({ repos, alwaysFullWidth = false }: IPropsRepos) => {
   const className = alwaysFullWidth ? 'w-full' : 'lg:w-2/3 w-full'
-  const [profile] = useGetGitProfile((state) => [state.profile])
-  const [repos, loading, getRepositories] = useGetRepositories((state) => [
-    state.repos,
-    state.loading,
-    state.getRepositories
-  ])
-
-  useEffect(() => {
-    if (profile && profile.repos_url) {
-      getRepositories(profile.repos_url)
-    }
-  }, [profile, getRepositories])
-  //   /**TODO: */
-  //   //  ERROR // GET http://localhost:3000/undefined 404 (Not Found)
-  // useEffect(() => {
-  //   getRepositories(profile.repos_url)
-  // }, [profile.repos_url, getRepositories])
-
-  if (loading)
-    return (
-      <div className={`${className} bg-glass rounded-lg px-8 py-6`}>
-        {' '}
-        <Spinner />
-      </div>
-    )
 
   return (
     <div className={`${className} bg-glass rounded-lg px-8 py-6`}>
@@ -48,5 +24,4 @@ const Repos = ({ alwaysFullWidth = false }) => {
     </div>
   )
 }
-
 export default Repos

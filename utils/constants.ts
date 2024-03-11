@@ -4,6 +4,7 @@ export const PROGRAMMING_LANGUAGES = {
   Python: '/python.svg',
   Java: '/java.svg',
   'C++': '/c++.svg',
+  C: '/c++.svg',
   Swift: '/swift.svg',
   Csharp: '/csharp.svg',
   Go: '/go.svg',

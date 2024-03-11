@@ -1,10 +1,8 @@
 'use client'
-import { useState } from 'react'
-import toast from 'react-hot-toast'
 
 import Image from 'next/image'
 import Spinner from '@/components/Spinner'
-import Repos2 from '@/components/Repos2'
+import Repos from '@/components/Repos'
 import { useGetLangRepo } from '@/store/useGetLanguageRepos'
 
 const languages = [
@@ -69,7 +67,7 @@ const ExplorePage = () => {
           </h2>
         )}
         {!loading && languageRepos?.length > 0 && (
-          <Repos2 repos={languageRepos} alwaysFullWidth />
+          <Repos repos={languageRepos} alwaysFullWidth />
         )}
 
         {loading && <Spinner />}

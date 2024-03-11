@@ -25,7 +25,7 @@ const Repo = ({ repo }: IRepo) => {
       toast.error('URL для клонирования не найден.')
     }
   }
-
+  console.log('repo.language', repo.language)
   return (
     <li className="mb-10 ms-7">
       <span
